@@ -13,7 +13,10 @@
 .entity {
     display: inline-block;
     background-color: rgba(250, 199, 199, 0.61);
+    padding-bottom: 0.25em;
+    border-bottom: 1px solid rgba(235, 102, 102, 0.918);
 }
+
 .token {
     display: inline-block;
     padding: 0.25rem 0;
