@@ -1,5 +1,6 @@
 import React from 'react'
 import { RenderElementProps, RenderLeafProps } from 'slate-react'
+import './Elements.css'
 
 export const Leaf: React.FC<RenderLeafProps> = (props) => {
     return (
@@ -39,14 +40,9 @@ export const EntityElement = (props: RenderElementProps) => {
 }
 
 export const TokenElement = (props: RenderElementProps) => {
-    return <div
-        {...props.attributes}
-        className="token"
-    >
-        {props.children}
-    </div>
+    return <div {...props.attributes} className="token">{props.children}</div>
 }
 
 export const DefaultElement = (props: RenderElementProps) => {
-    return <div {...props.attributes}>{props.children}</div>
+    return <div {...props.attributes} className="element">{props.children}</div>
 }

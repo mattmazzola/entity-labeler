@@ -1,7 +1,64 @@
 import { Transforms, Editor, Text, Node, Point } from 'slate'
-import { serialize } from './utilities'
+import { serialize, deserialize } from './utilities'
 
-// Define our own custom set of helpers.
+const defaultEditorValue2: Node[] = [
+    {
+        type: 'paragraph',
+        children: [
+            {
+                type: 'start_token',
+                children: [
+                    {
+                        text: ''
+                    },
+                ]
+            },
+            {
+                type: 'token',
+                children: [
+                    {
+                        text: 'Token 1'
+                    },
+                ]
+            },
+            {
+                type: 'token',
+                children: [
+                    {
+                        text: 'Token 2'
+                    },
+                ]
+            },
+            {
+                type: 'token',
+                children: [
+                    {
+                        text: 'Token 3'
+                    },
+                ]
+            },
+            {
+                type: 'token',
+                children: [
+                    {
+                        text: 'Token 4'
+                    },
+                ]
+            },
+            {
+                type: 'end_token',
+                children: [
+                    {
+                        text: ''
+                    },
+                ]
+            },
+        ],
+    },
+]
+
+const localStorageKey = 'content'
+
 const CustomEditor = {
     isBoldMarkActive(editor: Editor) {
         const [match] = Editor.nodes(editor, {
@@ -42,7 +99,17 @@ const CustomEditor = {
         const value = editor.children
         // Save the value to Local Storage.
         const serializedValue = serialize(value)
-        localStorage.setItem('content', serializedValue)
+        localStorage.setItem(localStorageKey, serializedValue)
+    },
+
+    loadValue(): Node[] {
+        try {
+            return deserialize(localStorage.getItem(localStorageKey)!)
+                ?? defaultEditorValue2
+        }
+        catch {
+            return defaultEditorValue2
+        }
     },
 
     expandSelectionToTokenBoundaries(editor: Editor) {

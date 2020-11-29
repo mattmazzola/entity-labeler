@@ -1,0 +1,32 @@
+.leaf-bold {
+    font-weight: bold;
+}
+
+.paragraph {
+    display: block;
+}
+
+.entity {
+    display: inline-block;
+    background-color: rgba(250, 199, 199, 0.61);
+    padding-bottom: 0.25em;
+    border-bottom: 1px solid rgba(235, 102, 102, 0.918);
+}
+
+.token {
+    display: inline-block;
+    padding: 0.25rem 0;
+    border-radius: 0.5rem;
+}
+
+.slate-debug .token {
+    border: 1px solid rgba(34, 34, 34, 0.082);
+}
+
+.slate-debug .token:hover {
+    background-color: rgba(0, 0, 0, 0.082);
+}
+
+.element {
+    display: inline-block;
+}

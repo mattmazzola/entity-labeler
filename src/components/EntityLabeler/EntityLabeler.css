@@ -2,27 +2,14 @@
     border: 1px solid black;
 }
 
-.leaf-bold {
-    font-weight: bold;
+.slate-container {
+    padding: 1em;
 }
 
-.paragraph {
-    display: block;
-}
-
-.entity {
-    display: inline-block;
-    background-color: rgba(250, 199, 199, 0.61);
-    padding-bottom: 0.25em;
-    border-bottom: 1px solid rgba(235, 102, 102, 0.918);
-}
-
-.token {
-    display: inline-block;
-    padding: 0.25rem 0;
-    border-radius: 0.5rem;
-}
-
-.token:hover {
-    background-color: rgba(0, 0, 0, 0.082);
+.toolbar {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    border-bottom: 1px solid black;
 }
