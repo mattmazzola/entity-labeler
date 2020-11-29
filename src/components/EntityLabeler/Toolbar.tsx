@@ -48,7 +48,7 @@ const Toolbar: React.FC<Props> = (props) => {
 
             <fieldset>
                 <legend>Actions:</legend>
-                <button type="button" onClick={() => CustomEditor.wrapNodes(props.editor)} disabled={props.editor.editMode === EditMode.None}>Wrap Nodes</button>
+                <button type="button" onClick={() => CustomEditor.wrapNodes(props.editor)}>Wrap Nodes</button>
                 <button type="button" onClick={() => CustomEditor.saveValue(props.editor)} >Save</button>
                 <button type="button" onClick={() => props.setValue(CustomEditor.loadValue())}>Load</button>
                 <button type="button" onClick={() => props.setValue(defaultEditorValue)}>Reset</button>
