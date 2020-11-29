@@ -1,10 +1,10 @@
 import React from 'react'
 import { Editor, Node } from 'slate'
-import CustomEditor from './customCommands'
-import { EditMode } from './withEditModes'
+import CustomEditor, { defaultEditorValue } from './customCommands'
+import { EditMode, EditModesEditor } from './withEditModes'
 
 type Props = {
-    editor: Editor,
+    editor: Editor & EditModesEditor,
     setValue: React.Dispatch<React.SetStateAction<Node[]>>
 }
 const Toolbar: React.FC<Props> = (props) => {
@@ -12,8 +12,13 @@ const Toolbar: React.FC<Props> = (props) => {
         const newEditMode = event.target.value as EditMode
         props.editor.editMode = newEditMode
         // TODO: Why doesn't useEffect work for this type of state change?
+        // Maybe because it's not real react state, and thus the change to an editor property isn't observed?
         console.log({ editMode: props.editor.editMode })
     }
+
+    React.useEffect(() => {
+        console.log(`Change: `, { editMode: props.editor.editMode })
+    }, [props.editor.editMode, props.editor.debug])
 
     function onChangeDebug() {
         props.editor.debug = !props.editor.debug
@@ -43,9 +48,10 @@ const Toolbar: React.FC<Props> = (props) => {
 
             <fieldset>
                 <legend>Actions:</legend>
-                <button type="button" onClick={() => CustomEditor.wrapNodes(props.editor)}>Wrap Nodes</button>
+                <button type="button" onClick={() => CustomEditor.wrapNodes(props.editor)} disabled={props.editor.editMode === EditMode.None}>Wrap Nodes</button>
                 <button type="button" onClick={() => CustomEditor.saveValue(props.editor)} >Save</button>
-                <button type="button" onClick={() => props.setValue(CustomEditor.loadValue())}>Reset</button>
+                <button type="button" onClick={() => props.setValue(CustomEditor.loadValue())}>Load</button>
+                <button type="button" onClick={() => props.setValue(defaultEditorValue)}>Reset</button>
             </fieldset>
 
         </div>

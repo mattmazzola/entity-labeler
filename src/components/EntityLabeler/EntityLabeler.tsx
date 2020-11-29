@@ -35,7 +35,7 @@ const EntityLabeler: React.FC = () => {
         if (editor.editMode === EditMode.LabelMode) {
             CustomEditor.expandSelectionToTokenBoundaries(editor)
         }
-    }, [])
+    }, [editor])
 
     function onChangeValue(newValue: Node[]) {
         setValue(newValue as any)
@@ -48,6 +48,7 @@ const EntityLabeler: React.FC = () => {
                 setValue={setValue}
             />
 
+            Mode: {editor.editMode}
             Debug: {editor.debug ? 'True' : 'False'}
 
             <div className={`slate-container ${editor.debug ? `slate-debug` : ``}`}>

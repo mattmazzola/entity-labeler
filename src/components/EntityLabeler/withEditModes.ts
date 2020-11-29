@@ -7,14 +7,14 @@ export enum EditMode {
 
 const defaultEditMode = EditMode.None
 
-type EditModesEditor = {
+export type EditModesEditor = {
     editMode: EditMode
     debug: boolean
 }
 
 const editModeOperationsMaps: Record<EditMode, string[]> = {
     [EditMode.None]: [],
-    [EditMode.LabelMode]: ['insert_text', 'remove_text', 'split_node'],
+    [EditMode.LabelMode]: ['insert_text', 'remove_text', 'split_node', 'merge_node'],
 }
 
 export function withEditModes<T extends Editor>(editor: T): T & EditModesEditor {

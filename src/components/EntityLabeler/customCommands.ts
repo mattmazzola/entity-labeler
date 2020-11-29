@@ -1,7 +1,7 @@
 import { Transforms, Editor, Text, Node, Point } from 'slate'
 import { serialize, deserialize } from './utilities'
 
-const defaultEditorValue2: Node[] = [
+export const defaultEditorValue: Node[] = [
     {
         type: 'paragraph',
         children: [
@@ -105,10 +105,10 @@ const CustomEditor = {
     loadValue(): Node[] {
         try {
             return deserialize(localStorage.getItem(localStorageKey)!)
-                ?? defaultEditorValue2
+                ?? defaultEditorValue
         }
         catch {
-            return defaultEditorValue2
+            return defaultEditorValue
         }
     },
 
@@ -127,6 +127,12 @@ const CustomEditor = {
         const endTokenPath = endPoint.path.slice(0, -1)
         const startToken = Node.get(editor, startTokenPath)
         const endToken = Node.get(editor, endTokenPath)
+
+        // If either the start or end is not a token preven expansion
+        if (startToken.type !== 'token'
+            || endToken.type !== 'token') {
+            return
+        }
 
         Transforms.setSelection(editor, {
             anchor: {
