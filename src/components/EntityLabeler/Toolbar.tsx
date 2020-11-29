@@ -21,21 +21,33 @@ const Toolbar: React.FC<Props> = (props) => {
 
     return (
         <div className="toolbar">
-            <label htmlFor="editMode-none">
-                <input id="editMode-none" onChange={onEditModeChange} type="radio" value={EditMode.None} defaultChecked={props.editor.editMode === EditMode.None} name="editMode" />
-                None
-            </label>
-            <label htmlFor="editMode-noTextEdit">
-                <input id="editMode-noTextEdit" onChange={onEditModeChange} type="radio" value={EditMode.LabelMode} name="editMode" />
-                Label
-            </label>
-            <label htmlFor="editMode-debug">
-                <input type="checkbox" onChange={onChangeDebug} checked={Boolean(props.editor.debug)} />
-                Debug
-            </label>
-            <button type="button" onClick={() => CustomEditor.wrapNodes(props.editor)}>Wrap Nodes</button>
-            <button type="button" onClick={() => CustomEditor.saveValue(props.editor)} >Save</button>
-            <button type="button" onClick={() => props.setValue(CustomEditor.loadValue())}>Reset</button>
+            <fieldset>
+                <legend>Mode:</legend>
+                <label htmlFor="editMode-none">
+                    <input id="editMode-none" onChange={onEditModeChange} type="radio" value={EditMode.None} defaultChecked={props.editor.editMode === EditMode.None} name="editMode" />
+                    None
+                </label>
+                <label htmlFor="editMode-noTextEdit">
+                    <input id="editMode-noTextEdit" onChange={onEditModeChange} type="radio" value={EditMode.LabelMode} name="editMode" />
+                    Label
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Options</legend>
+                <label htmlFor="editMode-debug">
+                    <input type="checkbox" onChange={onChangeDebug} defaultChecked={Boolean(props.editor.debug)} />
+                    Debug
+                </label>
+            </fieldset>
+
+            <fieldset>
+                <legend>Actions:</legend>
+                <button type="button" onClick={() => CustomEditor.wrapNodes(props.editor)}>Wrap Nodes</button>
+                <button type="button" onClick={() => CustomEditor.saveValue(props.editor)} >Save</button>
+                <button type="button" onClick={() => props.setValue(CustomEditor.loadValue())}>Reset</button>
+            </fieldset>
+
         </div>
     )
 }
