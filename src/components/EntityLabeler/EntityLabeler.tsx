@@ -6,11 +6,21 @@ import CustomEditor from './customCommands'
 import { CodeElement, EntityElement, Leaf, ParagraphElement, TokenElement, DefaultElement } from './elements'
 import './EntityLabeler.css'
 import { EditMode, withEditModes } from './withEditModes'
+import * as models from './models'
 import Toolbar from './Toolbar'
+import { convertExtractionToNodes } from './utilities'
 
-const EntityLabeler: React.FC = () => {
+type Props = {
+    extraction: models.Exraction
+    onChange: (e: models.Exraction) => void
+}
+
+const EntityLabeler: React.FC<Props> = (props) => {
     const editor = React.useMemo(() => withEditModes(withReact(withHistory(createEditor()))), [])
-    const [value, setValue] = React.useState(() => CustomEditor.loadValue())
+    const [value, setValue] = React.useState<Node[]>([])
+    React.useLayoutEffect(() => {
+        setValue(convertExtractionToNodes(props.extraction))
+    }, [props.extraction])
 
     const renderElement = React.useCallback(props => {
         switch (props.element.type) {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { RenderElementProps, RenderLeafProps } from 'slate-react'
+import classnames from 'classnames'
 import './Elements.css'
 
 export const Leaf: React.FC<RenderLeafProps> = (props) => {
@@ -40,7 +41,12 @@ export const EntityElement = (props: RenderElementProps) => {
 }
 
 export const TokenElement = (props: RenderElementProps) => {
-    return <div {...props.attributes} className="token">{props.children}</div>
+    const classNames = classnames({
+        'token': true,
+        'token--selectable': props.element.selectable
+    })
+
+    return <div {...props.attributes} className={classNames}>{props.children}</div>
 }
 
 export const DefaultElement = (props: RenderElementProps) => {

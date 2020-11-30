@@ -1,4 +1,5 @@
 import { Node } from 'slate'
+import * as models from './models'
 
 // Define a serializing function that takes a value and returns a string.
 export const serialize = (value: Node[]) => {
@@ -27,4 +28,49 @@ export const deserializeString = (string: string): Node[] => {
             children: [{ text: line }],
         }
     })
+}
+
+
+export const createExtraction = (text = ''): models.Exraction => {
+    return {
+        tokenizedText: tokenizeText(text),
+        entityPredictions: [],
+        tokenMetadata: [],
+    }
+}
+
+export const tokenizeRegex = /\s+|[.?,!]/g
+export function tokenizeText(text: string, tokenRegex: RegExp = tokenizeRegex): string[] {
+    return text.split(tokenRegex)
+}
+
+export function convertExtractionToNodes(extraction: models.Exraction): Node[] {
+    const tokenElements = extraction.tokenizedText.flatMap<models.TokenElement>(text => {
+        // TODO: Change to only add "space" token if metadata hasSpace is true
+        return [
+            {
+                type: 'token',
+                selectable: true,
+                children: [
+                    { text }
+                ]
+            },
+            {
+                type: 'token',
+                selectable: false,
+                children: [
+                    { text: ' ' }
+                ]
+            }
+        ]
+    })
+
+    tokenElements.pop()
+
+    const paragraph: models.ParagraphElement = {
+        type: 'paragraph',
+        children: tokenElements
+    }
+
+    return [paragraph]
 }

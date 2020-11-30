@@ -16,14 +16,14 @@
 .token {
     display: inline-block;
     padding: 0.25rem 0;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
 }
 
-.slate-debug .token {
+.slate-debug .token--selectable {
     border: 1px solid rgba(34, 34, 34, 0.082);
 }
 
-.slate-debug .token:hover {
+.slate-debug .token--selectable:hover {
     background-color: rgba(0, 0, 0, 0.082);
 }
 
