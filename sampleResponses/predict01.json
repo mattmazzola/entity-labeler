@@ -1,0 +1,284 @@
+[
+    {
+        "id": null,
+        "text": "i would like to order 2 chicken tacos with pico de gio lettuce and pepper jack",
+        "alteredText": "i would like to order 2 chicken tacos with pico de gio lettuce and pepper jack",
+        "tokenizedText": [
+            "i",
+            "would",
+            "like",
+            "to",
+            "order",
+            "2",
+            "chicken",
+            "tacos",
+            "with",
+            "pico",
+            "de",
+            "gio",
+            "lettuce",
+            "and",
+            "pepper",
+            "jack"
+        ],
+        "intentPredictions": [
+            {
+                "id": "1a8d7e39-7042-4b7b-915d-0e1bea1e605f",
+                "name": "order",
+                "score": 0.974265635
+            },
+            {
+                "id": "f668bd34-2216-4e59-8c93-56c5c4975038",
+                "name": "None",
+                "score": 0.0245670211
+            }
+        ],
+        "entityPredictions": [
+            {
+                "id": "8ae053bf-0fb6-47db-a437-fde4e9dbad98",
+                "entityName": "level1",
+                "startTokenIndex": 1,
+                "endTokenIndex": 1,
+                "phrase": "would",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "3aba9c69-d917-4c6c-864a-1ff6efca4e92",
+                "entityName": "root-ml",
+                "startTokenIndex": 1,
+                "endTokenIndex": 1,
+                "phrase": "would",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "3aba9c69-d917-4c6c-864a-1ff6efca4e92",
+                "entityName": "root-ml",
+                "startTokenIndex": 5,
+                "endTokenIndex": 15,
+                "phrase": "2 chicken tacos with pico de gio lettuce and pepper jack",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "8ae053bf-0fb6-47db-a437-fde4e9dbad98",
+                "entityName": "level1",
+                "startTokenIndex": 6,
+                "endTokenIndex": 6,
+                "phrase": "chicken",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "8ae053bf-0fb6-47db-a437-fde4e9dbad98",
+                "entityName": "level1",
+                "startTokenIndex": 9,
+                "endTokenIndex": 11,
+                "phrase": "pico de gio",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "8ae053bf-0fb6-47db-a437-fde4e9dbad98",
+                "entityName": "level1",
+                "startTokenIndex": 12,
+                "endTokenIndex": 12,
+                "phrase": "lettuce",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "8ae053bf-0fb6-47db-a437-fde4e9dbad98",
+                "entityName": "level1",
+                "startTokenIndex": 13,
+                "endTokenIndex": 13,
+                "phrase": "and",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            }
+        ],
+        "tokenMetadata": [
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": false
+            }
+        ],
+        "patternPredictions": [],
+        "sentimentAnalysis": null,
+        "connectedServiceResult": null,
+        "multiIntentPredictions": []
+    },
+    {
+        "id": null,
+        "text": "can i order 3 beef tacos with lettuce and cheddar ?",
+        "alteredText": "can i order 3 beef tacos with lettuce and cheddar ?",
+        "tokenizedText": [
+            "can",
+            "i",
+            "order",
+            "3",
+            "beef",
+            "tacos",
+            "with",
+            "lettuce",
+            "and",
+            "cheddar",
+            "?"
+        ],
+        "intentPredictions": [
+            {
+                "id": "1a8d7e39-7042-4b7b-915d-0e1bea1e605f",
+                "name": "order",
+                "score": 0.959270656
+            },
+            {
+                "id": "f668bd34-2216-4e59-8c93-56c5c4975038",
+                "name": "None",
+                "score": 0.02889892
+            }
+        ],
+        "entityPredictions": [
+            {
+                "id": "3aba9c69-d917-4c6c-864a-1ff6efca4e92",
+                "entityName": "root-ml",
+                "startTokenIndex": 2,
+                "endTokenIndex": 9,
+                "phrase": "order 3 beef tacos with lettuce and cheddar",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "8ae053bf-0fb6-47db-a437-fde4e9dbad98",
+                "entityName": "level1",
+                "startTokenIndex": 4,
+                "endTokenIndex": 4,
+                "phrase": "beef",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "8ae053bf-0fb6-47db-a437-fde4e9dbad98",
+                "entityName": "level1",
+                "startTokenIndex": 5,
+                "endTokenIndex": 5,
+                "phrase": "tacos",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "8ae053bf-0fb6-47db-a437-fde4e9dbad98",
+                "entityName": "level1",
+                "startTokenIndex": 7,
+                "endTokenIndex": 7,
+                "phrase": "lettuce",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            },
+            {
+                "id": "8ae053bf-0fb6-47db-a437-fde4e9dbad98",
+                "entityName": "level1",
+                "startTokenIndex": 9,
+                "endTokenIndex": 9,
+                "phrase": "cheddar",
+                "entityType": 1,
+                "role": "",
+                "roleId": ""
+            }
+        ],
+        "tokenMetadata": [
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": true
+            },
+            {
+                "hasSpace": false
+            }
+        ],
+        "patternPredictions": [],
+        "sentimentAnalysis": null,
+        "connectedServiceResult": null,
+        "multiIntentPredictions": []
+    }
+]
