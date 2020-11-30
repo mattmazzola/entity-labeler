@@ -1,7 +1,6 @@
 import { Node } from 'slate'
 import * as models from './models'
 
-// Define a serializing function that takes a value and returns a string.
 export const serialize = (value: Node[]) => {
     return JSON.stringify(value)
 }
@@ -16,7 +15,6 @@ export const serializeAsString = (value: Node[]) => {
     )
 }
 
-// Define a deserializing function that takes a string and returns a value.
 export const deserialize = (string: string): Node[] => {
     return JSON.parse(string)!
 }
@@ -30,10 +28,9 @@ export const deserializeString = (string: string): Node[] => {
     })
 }
 
-
-export const createExtraction = (text = ''): models.Exraction => {
+export const createExtraction = (text = '', tokenizer: (s: string) => string[] = tokenizeText): models.Exraction => {
     return {
-        tokenizedText: tokenizeText(text),
+        tokenizedText: tokenizer(text),
         entityPredictions: [],
         tokenMetadata: [],
     }
@@ -73,4 +70,13 @@ export function convertExtractionToNodes(extraction: models.Exraction): Node[] {
     }
 
     return [paragraph]
+}
+
+export function convertValueToExtraction(value: Node[]): models.Exraction {
+
+    return {
+        entityPredictions: [],
+        tokenMetadata: [],
+        tokenizedText: []
+    }
 }

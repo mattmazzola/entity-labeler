@@ -4,11 +4,12 @@ import classnames from 'classnames'
 import './Elements.css'
 
 export const Leaf: React.FC<RenderLeafProps> = (props) => {
+    const classNames = classnames({
+        'leaf-bold': props.leaf.bold
+    })
+
     return (
-        <span
-            {...props.attributes}
-            className={`${props.leaf.bold ? 'leaf-bold' : ''}`}
-        >
+        <span {...props.attributes} className={classNames}>
             {props.children}
         </span>
     )

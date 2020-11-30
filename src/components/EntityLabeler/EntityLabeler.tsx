@@ -8,19 +8,30 @@ import './EntityLabeler.css'
 import { EditMode, withEditModes } from './withEditModes'
 import * as models from './models'
 import Toolbar from './Toolbar'
-import { convertExtractionToNodes } from './utilities'
+import { convertExtractionToNodes, convertValueToExtraction } from './utilities'
 
 type Props = {
     extraction: models.Exraction
     onChange: (e: models.Exraction) => void
+    tokenizer: (text: string) => string[]
 }
 
 const EntityLabeler: React.FC<Props> = (props) => {
     const editor = React.useMemo(() => withEditModes(withReact(withHistory(createEditor()))), [])
     const [value, setValue] = React.useState<Node[]>([])
-    React.useLayoutEffect(() => {
+
+    React.useEffect(() => {
         setValue(convertExtractionToNodes(props.extraction))
     }, [props.extraction])
+
+    React.useEffect(() => {
+        console.log(`Edit Mode Changed: `, editor.editMode)
+    }, [editor.editMode])
+
+    React.useEffect(() => {
+        const extraction = convertValueToExtraction(value)
+        props.onChange(extraction)
+    }, [value])
 
     const renderElement = React.useCallback(props => {
         switch (props.element.type) {
@@ -45,7 +56,7 @@ const EntityLabeler: React.FC<Props> = (props) => {
         if (editor.editMode === EditMode.LabelMode) {
             CustomEditor.expandSelectionToTokenBoundaries(editor)
         }
-    }, [editor])
+    }, [editor.editMode])
 
     function onChangeValue(newValue: Node[]) {
         setValue(newValue as any)

@@ -1,13 +1,15 @@
 import React from 'react'
 import './App.css'
 import EntityLabeler, { EntityLabelModels, createExtraction } from './components/EntityLabeler'
-
-
+import { tokenizeText } from './components/EntityLabeler/utilities'
 
 function App() {
 
-  const [extraction, setExtraction] = React.useState(() => createExtraction('This is the default text'))
-  const onChangeExtraction = (e: EntityLabelModels.Exraction) => setExtraction(e)
+  const [extraction, setExtraction] = React.useState(() => createExtraction('This is the default text', tokenizeText))
+  const onChangeExtraction = (e: EntityLabelModels.Exraction) => {
+    console.log(`onChangeExtraction: `, e)
+    // setExtraction(e)
+  }
 
   return (
     <div className="app">
@@ -19,6 +21,7 @@ function App() {
         <EntityLabeler
           extraction={extraction}
           onChange={onChangeExtraction}
+          tokenizer={tokenizeText}
         />
 
         <h2>Extraction:</h2>
