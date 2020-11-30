@@ -1,9 +1,9 @@
 import React from 'react'
 import { createEditor, Node } from 'slate'
 import { withHistory } from 'slate-history'
-import { Slate, Editable, withReact } from 'slate-react'
+import { Slate, Editable, withReact, DefaultElement } from 'slate-react'
 import CustomEditor from './customCommands'
-import { CodeElement, EntityElement, Leaf, ParagraphElement, TokenElement, DefaultElement } from './elements'
+import { CodeElement, EntityElement, Leaf, ParagraphElement, TokenElement } from './elements'
 import './EntityLabeler.css'
 import { EditMode, withEditModes } from './withEditModes'
 import * as models from './models'
@@ -35,14 +35,12 @@ const EntityLabeler: React.FC<Props> = (props) => {
 
     const renderElement = React.useCallback(props => {
         switch (props.element.type) {
-            case 'paragraph':
-                return <ParagraphElement {...props} />
+            // case 'paragraph':
+            //     return <ParagraphElement {...props} />
             case 'entity':
                 return <EntityElement {...props} />
             case 'token':
                 return <TokenElement {...props} />
-            case 'code':
-                return <CodeElement {...props} />
             default:
                 return <DefaultElement {...props} />
         }

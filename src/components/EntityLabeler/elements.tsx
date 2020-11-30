@@ -33,12 +33,12 @@ export const ParagraphElement = (props: RenderElementProps) => {
 }
 
 export const EntityElement = (props: RenderElementProps) => {
-    return <div
+    return <span
         {...props.attributes}
         className="entity"
     >
         {props.children}
-    </div>
+    </span>
 }
 
 export const TokenElement = (props: RenderElementProps) => {
@@ -47,9 +47,5 @@ export const TokenElement = (props: RenderElementProps) => {
         'token--selectable': props.element.selectable
     })
 
-    return <div {...props.attributes} className={classNames}>{props.children}</div>
-}
-
-export const DefaultElement = (props: RenderElementProps) => {
-    return <div {...props.attributes} className="element">{props.children}</div>
+    return <span {...props.attributes} className={classNames}>{props.children}</span>
 }

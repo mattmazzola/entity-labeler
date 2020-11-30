@@ -17,13 +17,28 @@ const editModeOperationsMaps: Record<EditMode, string[]> = {
     [EditMode.LabelMode]: ['insert_text', 'remove_text', 'split_node', 'merge_node'],
 }
 
+const inlineElementTypes = ['token', 'entity']
+const voidElementTypes: string[] = []
+
 export function withEditModes<T extends Editor>(editor: T): T & EditModesEditor {
     // TODO: Clean up typing. Do we need casting?
     const editorWithModes = (editor as unknown) as (T & EditModesEditor)
     editorWithModes.editMode = defaultEditMode
     editorWithModes.debug = false
 
-    const { apply: originalApply } = editor
+    const { isInline, isVoid, apply } = editor
+
+    editor.isInline = element => {
+        return inlineElementTypes.some(type => type === element.type)
+            ? true
+            : isInline(element)
+    }
+
+    editor.isVoid = element => {
+        return voidElementTypes.some(type => type === element.type)
+            ? true
+            : isVoid(element)
+    }
 
     editor.apply = (operation) => {
         console.log({
@@ -39,7 +54,7 @@ export function withEditModes<T extends Editor>(editor: T): T & EditModesEditor 
             return
         }
 
-        originalApply(operation)
+        apply(operation)
     }
 
     return editorWithModes
