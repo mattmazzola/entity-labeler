@@ -17,7 +17,7 @@ const editModeOperationsMaps: Record<EditMode, string[]> = {
     [EditMode.LabelMode]: ['insert_text', 'remove_text', 'split_node', 'merge_node'],
 }
 
-const inlineElementTypes = ['token', 'entity']
+const inlineElementTypes = ['token', 'entity', 'space']
 const voidElementTypes: string[] = []
 
 export function withEditModes<T extends Editor>(editor: T): T & EditModesEditor {

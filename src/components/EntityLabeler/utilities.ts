@@ -42,27 +42,34 @@ export function tokenizeText(text: string, tokenRegex: RegExp = tokenizeRegex): 
 }
 
 export function convertExtractionToNodes(extraction: models.Exraction): Node[] {
-    const tokenElements = extraction.tokenizedText.flatMap<models.TokenElement>(text => {
-        // TODO: Change to only add "space" token if metadata hasSpace is true
-        return [
-            {
-                type: 'token',
-                selectable: true,
-                children: [
-                    { text }
-                ]
-            },
-            {
-                type: 'token',
-                selectable: false,
-                children: [
-                    { text: ' ' }
-                ]
-            }
-        ]
-    })
+    const tokenElements = extraction.tokenizedText.flatMap((text, i) => {
+        const token: models.TokenElement = {
+            type: 'token',
+            selectable: true,
+            tokenIndex: i,
+            children: [
+                { text }
+            ]
+        }
 
-    tokenElements.pop()
+        const tokens: (models.TokenElement | Node)[] = [token]
+        const isLast = extraction.tokenizedText.length - 1 === i
+        const addSpace = !isLast
+
+        // TODO: Change to only add "space" token if metadata hasSpace is true
+        const spaceElement: Node = {
+            type: 'space',
+            children: [
+                { text: ' ' }
+            ]
+        }
+
+        if (addSpace) {
+            tokens.push(spaceElement)
+        }
+
+        return tokens
+    })
 
     const paragraph: models.ParagraphElement = {
         type: 'paragraph',
@@ -74,9 +81,21 @@ export function convertExtractionToNodes(extraction: models.Exraction): Node[] {
 
 export function convertValueToExtraction(value: Node[]): models.Exraction {
 
+    const allTokenNodes = value.flatMap(node => {
+        const nodeEntries = [...Node.elements(node)]
+        const nodes = nodeEntries.map(([n,p]) => n)
+        const tokenNodes = nodes.filter(n => n.type === 'token')
+
+        return tokenNodes
+    })
+
+    const tokenizedText = allTokenNodes.map(n => Node.string(n))
+
+    console.log({ allTokenNodes })
+
     return {
         entityPredictions: [],
         tokenMetadata: [],
-        tokenizedText: []
+        tokenizedText
     }
 }
